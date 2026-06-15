@@ -14,12 +14,16 @@ Model classifier dan scaler tersimpan lokal di:
 
 ```text
 models/
+├── yamnet/
+│   └── yamnet.tflite
 └── sequential/
     ├── yamnet_sequential.tflite
     └── yamnet_scaler.joblib
 ```
 
-YAMNet dimuat melalui TensorFlow Hub saat backend pertama kali dijalankan.
+Backend menggunakan LiteRT untuk YAMNet dan classifier, tanpa TensorFlow.
+Endpoint diagnosis menerima WAV PCM16. Website mengonversi audio menjadi format
+tersebut sebelum upload.
 
 ## Pengujian
 

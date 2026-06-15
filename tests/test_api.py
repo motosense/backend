@@ -48,7 +48,7 @@ def test_health_reports_ready_models():
         "ready": True,
         "labels": EXPECTED_LABELS,
         "numLabels": 8,
-        "engine": "YAMNet + Sequential TFLite",
+        "engine": "YAMNet LiteRT + Sequential LiteRT",
     }
 
 
@@ -65,7 +65,7 @@ def test_diagnosis_returns_normalized_scores():
     assert result["labels"] == EXPECTED_LABELS
     assert result["sampleRate"] == 16_000
     assert result["framesProcessed"] > 0
-    assert result["engine"] == "YAMNet + Sequential TFLite"
+    assert result["engine"] == "YAMNet LiteRT + Sequential LiteRT"
     assert result["mode"] == "ai"
     assert result["confidence"] == max(result["scores"])
 
@@ -78,7 +78,7 @@ def test_invalid_audio_is_rejected():
         )
 
     assert response.status_code == 422
-    assert "Audio tidak dapat dibaca" in response.json()["detail"]
+    assert "WAV PCM16" in response.json()["detail"]
 
 
 def test_short_audio_is_rejected():
